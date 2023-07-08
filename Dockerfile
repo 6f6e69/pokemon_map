@@ -7,6 +7,7 @@ ENV POETRY_HOME="/opt/poetry" \
 ENV PATH="$POETRY_HOME/bin:$PATH"
 
 RUN apt-get update \
+    && apt-get install -y zlib1g-dev libjpeg-dev gcc \
     && apt-get install -y --no-install-recommends curl \
     && curl -sSL https://install.python-poetry.org | python3 -
 
@@ -31,5 +32,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PATH="/venv/.venv/bin:$PATH"
 
 COPY --from=builder /venv/.venv /venv/.venv
+
+RUN apt-get update \
+    && apt-get install -y zlib1g-dev libjpeg-dev
 
 WORKDIR /app
