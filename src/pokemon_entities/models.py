@@ -7,3 +7,8 @@ class Pokemon(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class PokemonEntity(models.Model):
+    latitude: models.FloatField = models.FloatField(verbose_name='Lat')
+    longitude: models.FloatField = models.FloatField(verbose_name='Lon')
