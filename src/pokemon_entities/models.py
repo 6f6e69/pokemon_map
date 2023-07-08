@@ -17,3 +17,8 @@ class PokemonEntity(models.Model):
                                                    verbose_name="pokemon")
     appeared_at: models.DateTimeField = models.DateTimeField()
     disappeared_at: models.DateTimeField = models.DateTimeField()
+    level: models.IntegerField = models.IntegerField()
+    health: models.IntegerField = models.IntegerField()
+    strength: models.IntegerField = models.IntegerField()
+    defence: models.IntegerField = models.IntegerField()
+    stamina: models.IntegerField = models.IntegerField()
