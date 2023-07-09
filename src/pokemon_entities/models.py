@@ -12,6 +12,11 @@ class Pokemon(models.Model):
                                                   blank=True,
                                                   default="")
     image: models.ImageField = models.ImageField(blank=True)
+    previous_evolution: models.ForeignKey = models.ForeignKey(
+                                                "self",
+                                                on_delete=models.SET_NULL,
+                                                blank=True,
+                                                null=True)
     description: models.TextField = models.TextField(blank=True,
                                                      default="")
 
