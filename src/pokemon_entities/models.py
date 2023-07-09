@@ -14,8 +14,7 @@ class Pokemon(models.Model):
                                 blank=True,
                                 default="",
                                 verbose_name="название (японское)")
-    image = models.ImageField(blank=True,
-                              verbose_name="изображение")
+    image = models.ImageField(verbose_name="изображение")
     previous_evolution = models.ForeignKey("self",
                                            on_delete=models.SET_NULL,
                                            blank=True,
@@ -39,12 +38,8 @@ class PokemonEntity(models.Model):
     pokemon = models.ForeignKey(Pokemon,
                                 on_delete=models.CASCADE,
                                 verbose_name="покемон")
-    appeared_at = models.DateTimeField(blank=True,
-                                       null=True,
-                                       verbose_name="появится с")
-    disappeared_at = models.DateTimeField(blank=True,
-                                          null=True,
-                                          verbose_name="исчезнет в")
+    appeared_at = models.DateTimeField(verbose_name="появится с")
+    disappeared_at = models.DateTimeField(verbose_name="исчезнет в")
     level = models.IntegerField(blank=True,
                                 null=True,
                                 verbose_name="уровень")
