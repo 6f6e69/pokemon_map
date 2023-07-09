@@ -5,6 +5,12 @@ from pytz import timezone
 
 class Pokemon(models.Model):
     title: models.CharField = models.CharField(max_length=200)
+    title_en: models.CharField = models.CharField(max_length=200,
+                                                  blank=True,
+                                                  default="")
+    title_jp: models.CharField = models.CharField(max_length=200,
+                                                  blank=True,
+                                                  default="")
     image: models.ImageField = models.ImageField(blank=True)
     description: models.TextField = models.TextField(blank=True,
                                                      default="")
