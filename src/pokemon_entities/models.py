@@ -6,6 +6,8 @@ from pytz import timezone
 class Pokemon(models.Model):
     title: models.CharField = models.CharField(max_length=200)
     image: models.ImageField = models.ImageField(blank=True)
+    description: models.TextField = models.TextField(blank=True,
+                                                     default="")
 
     def __str__(self) -> str:
         return self.title
