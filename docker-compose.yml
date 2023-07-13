@@ -5,7 +5,7 @@ services:
     build:
       context: .
       args:
-        dev: true
+        dev: false
     command: python3 manage.py runserver 0.0.0.0:8000
     env_file:
       - .env
@@ -15,7 +15,3 @@ services:
       - ./src:/app
       - ./data/db:/app/db
       - ./data/media:/app/media
-
-networks:
-  db_net:
-    driver: bridge
