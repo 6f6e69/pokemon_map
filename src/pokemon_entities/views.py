@@ -2,6 +2,8 @@ import folium
 
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
+from django.db.models import Q
+from django.utils.timezone import localtime
 from .models import Pokemon, PokemonEntity
 from pytz import timezone
 
@@ -30,15 +32,18 @@ def add_pokemon(folium_map, lat, lon, image_url=DEFAULT_IMAGE_URL):
 def show_all_pokemons(request):
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
-    pokemon_entities = PokemonEntity.objects.all()
+    map_timezone = timezone('Europe/Moscow')
+    current_datetime = localtime(timezone=map_timezone)
+    pokemon_entities = PokemonEntity.objects.filter(
+                            appeared_at__lt=current_datetime,
+                            disappeared_at__gt=current_datetime)
     for pokemon_entity in pokemon_entities:
-        if pokemon_entity.is_active_in_timezone(timezone('Europe/Moscow')):
-            pokemon_image_url: str = request.build_absolute_uri(
-                                         pokemon_entity.pokemon.image.url)
-            add_pokemon(folium_map,
-                        lat=pokemon_entity.latitude,
-                        lon=pokemon_entity.longitude,
-                        image_url=pokemon_image_url)
+        pokemon_image_url: str = request.build_absolute_uri(
+                                     pokemon_entity.pokemon.image.url)
+        add_pokemon(folium_map,
+                    lat=pokemon_entity.latitude,
+                    lon=pokemon_entity.longitude,
+                    image_url=pokemon_image_url)
 
     pokemons = Pokemon.objects.all()
 
