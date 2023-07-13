@@ -8,11 +8,9 @@ class Pokemon(models.Model):
                              verbose_name="название (русское)")
     title_en = models.CharField(max_length=200,
                                 blank=True,
-                                default="",
                                 verbose_name="название (английское)")
     title_jp = models.CharField(max_length=200,
                                 blank=True,
-                                default="",
                                 verbose_name="название (японское)")
     image = models.ImageField(verbose_name="изображение")
     previous_evolution = models.ForeignKey("self",
@@ -21,7 +19,6 @@ class Pokemon(models.Model):
                                            null=True,
                                            verbose_name="предыдущая эволюция")
     description = models.TextField(blank=True,
-                                   default="",
                                    verbose_name="описание")
 
     def __str__(self) -> str:
