@@ -79,7 +79,7 @@ def show_pokemon(request, pokemon_id):
                        pokemon.previous_evolution.image.url)
         }
 
-    next_evolution = pokemon.pokemon_set.all()
+    next_evolution = pokemon.prev_evolut.all()
     if next_evolution:
         pokemon_characteristics['next_evolution'] = {
             'pokemon_id': next_evolution[0].id,
