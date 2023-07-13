@@ -1,8 +1,7 @@
 import folium
 
 from django.http import HttpResponseNotFound
-from django.shortcuts import render
-from django.db.models import Q
+from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import localtime
 from .models import Pokemon, PokemonEntity
 from pytz import timezone

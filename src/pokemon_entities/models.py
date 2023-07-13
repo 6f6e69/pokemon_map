@@ -1,6 +1,4 @@
 from django.db import models  # noqa F401
-from django.utils.timezone import localtime
-from datetime import tzinfo
 
 
 class Pokemon(models.Model):
