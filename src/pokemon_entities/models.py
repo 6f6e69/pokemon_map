@@ -22,12 +22,12 @@ class Pokemon(models.Model):
     description = models.TextField(blank=True,
                                    verbose_name="описание")
 
-    def __str__(self) -> str:
-        return self.title
-
     class Meta:
         verbose_name = "покемон"
         verbose_name_plural = "покемоны"
+
+    def __str__(self) -> str:
+        return self.title
 
 
 class PokemonEntity(models.Model):
@@ -55,6 +55,10 @@ class PokemonEntity(models.Model):
                                   null=True,
                                   verbose_name="выносливость")
 
+    class Meta:
+        verbose_name = "объект покемона"
+        verbose_name_plural = "объекты покемонов"
+
     def __str__(self) -> str:
         return (f"{self.pokemon.title} {self.level}lvl "
                 f"{self.latitude,self.longitude}")
@@ -65,7 +69,3 @@ class PokemonEntity(models.Model):
                     localtime(timezone=timezone) <
                     self.disappeared_at)
         return False
-
-    class Meta:
-        verbose_name = "объект покемона"
-        verbose_name_plural = "объекты покемонов"
