@@ -16,7 +16,7 @@ class Pokemon(models.Model):
                                            blank=True,
                                            null=True,
                                            verbose_name="предыдущая эволюция",
-                                           related_name="prev_evolut")
+                                           related_name="next_evolutions")
     description = models.TextField(blank=True,
                                    verbose_name="описание")
 
@@ -34,7 +34,7 @@ class PokemonEntity(models.Model):
     pokemon = models.ForeignKey(Pokemon,
                                 on_delete=models.CASCADE,
                                 verbose_name="покемон",
-                                related_name="pokemon_ent")
+                                related_name="pokemon_entities")
     appeared_at = models.DateTimeField(verbose_name="появится с")
     disappeared_at = models.DateTimeField(verbose_name="исчезнет в")
     level = models.IntegerField(blank=True,
